@@ -36,7 +36,7 @@ function Quiz({ quiz }) {
 
     const handleStartQuiz = (e)=>{
         e.preventDefault();
-        navigate("/play/quiz");
+        navigate(`/play/${quizname}`);
     }
 
 
