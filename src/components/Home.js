@@ -276,10 +276,16 @@ function Home() {
     navigate("/login");
   };
 
+  const handleUserQuizes = (e) =>{
+    e.preventDefault();
+    navigate("/user/quizes");
+  }
+
   return (
     <>
       <header>
         <button onClick={handleLogin}> Login </button>
+        <button onClick={handleUserQuizes}> My Quizes </button>
       </header>
       <section>
         <div>
