@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Quizes from "./Quizes/Quizes";
 import { ToastContainer, toast } from "react-toastify";
+import Card from 'react-bootstrap/Card';
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import "./mix.css";
 
 function MyVerticallyCenteredModal(props) {
     const [formData, setFormData] = useState({
@@ -227,7 +229,6 @@ function MyVerticallyCenteredModal(props) {
 
 function Home() {
   const [currQuiz, setCurrQuiz] = useState([]);
-  const navigate = useNavigate();
   const [modalShow, setModalShow] = useState(false);
   useEffect(() => {
     const getAllQuiz = async () => {
@@ -271,28 +272,16 @@ function Home() {
     }
   });
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    navigate("/login");
-  };
-
-  const handleUserQuizes = (e) =>{
-    e.preventDefault();
-    navigate("/user/quizes");
-  }
-
   return (
     <>
-      <header>
-        <button onClick={handleLogin}> Login </button>
-        <button onClick={handleUserQuizes}> My Quizes </button>
-      </header>
       <section>
-        <div>
-          <h1>All Quizes</h1>
-          <h5> Pending Quizes </h5>
+        <div style={{display:"flex", justifyContent:"center", alignItems:"center", padding:"20px 20px"}}>
+          <h1> All Quizes </h1>
+          
         </div>
-        <div>
+        <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+        <Card style={{width: '80%', padding:"20px 60px"}}>
+        <h5> Upcoming Quizes </h5>
           {currQuiz.length ? (
             <div>
               {currQuiz.map((v) => {
@@ -302,6 +291,7 @@ function Home() {
           ) : (
             <div>There are no quiz pending.</div>
           )}
+        </Card>
         </div>
         <MyVerticallyCenteredModal
           show={modalShow}

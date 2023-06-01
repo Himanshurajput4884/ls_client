@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 function Quiz({ quiz }) {
   const quizname = quiz.quizname;
@@ -41,40 +43,44 @@ function Quiz({ quiz }) {
 
 
   return (
-    <div
-      className="main"
-      style={{
-        border: "2px solid black",
-        padding: "10px 10px",
-        borderRadius: "10px",
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-around",
-        
-        
-      }}
-    >
-      <div>
-        <p>Quiz Name: {quiz.quizname}</p>
-        <p>Subject1: {quiz.choice1}</p>
-        <p>Subject2: {quiz.choice2}</p>
-        <p>Subject3: {quiz.choice3}</p>
-        <p>Prize: {quiz.prize}</p>
-        <p>Date: {formattedDate}</p>
-        <p>Time:{quiz.time}</p>
-      </div>
-      {
-        timeToQuiz === true 
-         ?
-         (<div>
-            <button onClick={ handleStartQuiz }> Start Quiz </button>
-         </div>)
-         :
-         (<div>
-            <button> Quiz yet not started </button>
-         </div>)
-      }
-    </div>
+    
+      <Card style={{margin:"4px 0px"}}>
+        <Card.Header as="h5"> {quiz.quizname} </Card.Header>
+        <Card.Body>
+          <div style={{display:"flex", flexDirection:"row", justifyContent:"space-evenly", width:"100%"}}> 
+            <div style={{display:"flex", flexDirection:"column"}}>
+            <Card.Text>
+            Subject 1: {quiz.choice1}
+            </Card.Text>
+            <Card.Text>
+            Subject 2: {quiz.choice2}
+            </Card.Text>
+            <Card.Text>
+            Subject 3: {quiz.choice3}
+            </Card.Text>
+            </div>
+            <div style={{display:"flex", flexDirection:"column"}}>
+            <Card.Text>
+            Prize: $ {quiz.prize}
+            </Card.Text>
+            <Card.Text>
+            Date: {formattedDate}
+            </Card.Text>
+            <Card.Text>
+            Time:{quiz.time}
+            </Card.Text>
+            </div>
+            {
+               timeToQuiz === true 
+              ? 
+              <Button onClick={handleStartQuiz} variant="primary" style={{height:"50px"}}> Start Quiz </Button>
+               : 
+              <Button variant="primary" style={{height:"50px"}}> Quiz Yet not started </Button>
+             } 
+          </div>
+        </Card.Body>
+      </Card>
+      
   );
 }
 

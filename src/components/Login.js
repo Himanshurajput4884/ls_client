@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import "./mix.css";
+
 
 const Login = () => {
   const [Logintoggle, setLogintoggle] = useState("login");

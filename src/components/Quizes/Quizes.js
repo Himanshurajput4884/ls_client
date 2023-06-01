@@ -1,4 +1,6 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import { ToastContainer, toast } from "react-toastify";
 
 function Quizes({ quiz }) {
@@ -13,9 +15,9 @@ function Quizes({ quiz }) {
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
 
-  const formattedDate = `${day.toString().padStart(2, "0")}/${month.toString().padStart(2, "0")}/${year}`;
-
-
+  const formattedDate = `${day.toString().padStart(2, "0")}/${month
+    .toString()
+    .padStart(2, "0")}/${year}`;
 
   const handleRegisterQuiz = async (e) => {
     e.preventDefault();
@@ -25,7 +27,7 @@ function Quizes({ quiz }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "authorization": token,
+          authorization: token,
           Accept: "application/json",
         },
         body: JSON.stringify({ quizname }),
@@ -39,13 +41,13 @@ function Quizes({ quiz }) {
         });
       } else if (res.message === "Eligible") {
         const data2 = await fetch(`http://localhost:8008/register/quiz`, {
-          method:"POST",
-          headers:{
-            "Content-Type":"application/json",
-            "authorization": token,
-          Accept: "application/json",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: token,
+            Accept: "application/json",
           },
-          body:JSON.stringify({quizname})
+          body: JSON.stringify({ quizname }),
         });
 
         const res2 = await data2.json();
@@ -57,30 +59,36 @@ function Quizes({ quiz }) {
   };
 
   return (
-    <div
-      className="main"
-      style={{
-        border: "2px solid black",
-        padding: "10px 10px",
-        borderRadius: "10px",
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-around",
-      }}
-    >
-      <div>
-        <p>Quiz Name: {quiz.quizname}</p>
-        <p>Subject1: {quiz.choice1}</p>
-        <p>Subject2: {quiz.choice2}</p>
-        <p>Subject3: {quiz.choice3}</p>
-        <p>Prize: {quiz.prize}</p>
-        <p>Date: {formattedDate}</p>
-        <p>Time:{quiz.time}</p>
-      </div>
-      <div>
-        <button onClick={handleRegisterQuiz}> Register </button>
-      </div>
-    </div>
+      <Card style={{margin:"4px 0px"}}>
+        <Card.Header as="h5"> {quiz.quizname} </Card.Header>
+        <Card.Body>
+          <div style={{display:"flex", flexDirection:"row", justifyContent:"space-evenly", width:"100%"}}> 
+            <div style={{display:"flex", flexDirection:"column"}}>
+            <Card.Text>
+            Subject 1: {quiz.choice1}
+            </Card.Text>
+            <Card.Text>
+            Subject 2: {quiz.choice2}
+            </Card.Text>
+            <Card.Text>
+            Subject 3: {quiz.choice3}
+            </Card.Text>
+            </div>
+            <div style={{display:"flex", flexDirection:"column"}}>
+            <Card.Text>
+            Prize: $ {quiz.prize}
+            </Card.Text>
+            <Card.Text>
+            Date: {formattedDate}
+            </Card.Text>
+            <Card.Text>
+            Time:{quiz.time}
+            </Card.Text>
+            </div>
+          <Button onClick={handleRegisterQuiz} variant="primary" style={{height:"50px"}}> Register </Button>
+          </div>
+        </Card.Body>
+      </Card>
   );
 }
 
