@@ -37,7 +37,7 @@ const RunQuiz = () => {
       // Start the quiz after a 5-minute delay
       setTimeout(() => {
         socket.emit('startQuiz');
-      }, 2000);
+      }, 20);
     });
 
     // Receive a new question from the server
