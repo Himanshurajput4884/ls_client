@@ -3,6 +3,8 @@ import io from "socket.io-client";
 import { toast, ToastContainer } from "react-toastify";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
+
 
 const socket = io("http://localhost:8007");
 
@@ -15,7 +17,7 @@ const RunQuiz = () => {
   const [timer2, setTimer] = useState(60);
   let timer;
   console.log(selectedOption);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((prevTimer) => prevTimer - 1);
@@ -35,7 +37,7 @@ const RunQuiz = () => {
       // Start the quiz after a 5-minute delay
       setTimeout(() => {
         socket.emit('startQuiz');
-      }, 5000);
+      }, 2000);
     });
 
     // Receive a new question from the server
@@ -43,6 +45,7 @@ const RunQuiz = () => {
       setQuestion(data);
       setSelectedOption(null); // Reset selected option for each question
       startTimer();
+      setTimer(60);
     });
 
     // Receive the score from the server
@@ -54,6 +57,7 @@ const RunQuiz = () => {
     // Handle disconnection from the server
     socket.on('disconnect', () => {
       toast.error('Disconnected from server');
+      navigate("/");
       clearTimeout(timer);
     });
 
@@ -83,7 +87,7 @@ const RunQuiz = () => {
   const submitAnswer = (answer) => {
     clearTimeout(timer);
     setSelectedOption(answer);
-    socket.emit("answer", { answer });
+    socket.emit("answer", { answer:answer, responseTime: timer2 });
     setQuestion(null); // Clear the current question to show "Loading..." for the next question
   };
 
@@ -167,6 +171,7 @@ const RunQuiz = () => {
             </div>
           </Card>
         </Card>
+        <ToastContainer/>
       </div>
     </>
   );

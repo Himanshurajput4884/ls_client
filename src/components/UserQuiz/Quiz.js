@@ -28,7 +28,7 @@ function Quiz({ quiz }) {
             return (
               currentTime >= targetDate &&
               currentTime.getHours() === targetTime.getHours() &&
-              currentTime.getMinutes() === targetTime.getMinutes()
+              (currentTime.getMinutes() >= targetTime.getMinutes()-2 && currentTime.getMinutes() <= targetTime.getMinutes()+2)
             );
         }
         if(shouldStartQuiz(quiz.date, quiz.time)){
@@ -74,9 +74,10 @@ function Quiz({ quiz }) {
                timeToQuiz === true 
               ? 
               <Button onClick={handleStartQuiz} variant="primary" style={{height:"50px"}}> Start Quiz </Button>
-               : 
+              :
               <Button variant="primary" style={{height:"50px"}}> Quiz Yet not started </Button>
-             } 
+            } 
+            <Button onClick={handleStartQuiz} variant="primary" style={{height:"50px"}}> Start Quiz </Button>
           </div>
         </Card.Body>
       </Card>

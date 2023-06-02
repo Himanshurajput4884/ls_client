@@ -49,6 +49,7 @@ function MyVerticallyCenteredModal(props) {
 
         if(response.message === "User details saved"){
             console.log("User details saved");
+            props.onHide();
             navigate("/");
         }
 
@@ -72,15 +73,14 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <section>
-          <div classname="form_data">
-            <div classname="form_heading">
+        <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+          
+            <div style={{padding:"10px 0px"}}>
               <h1>Save your details</h1>
             </div>
-            <form>
-              <div classname="form_input">
+              <div style={{width:"60%", display:"flex", flexDirection:"row", justifyContent:"center", padding:"4px 0px"}}>
                 <label htmlfor="name">
-                  <h6>Full Name</h6>
+                  <h4 style={{padding:"0px 10px"}}>Full Name   </h4>
                 </label>
                 <input
                   type="text"
@@ -89,10 +89,12 @@ function MyVerticallyCenteredModal(props) {
                   required="true"
                   name="fullname" 
                   placeholder="Enter fullname"
+                  style={{border:"1px solid black", borderRadius:"4px", padding:"2px 2px"}}
                 />
               </div>
+              <div style={{width:"60%", display:"flex", flexDirection:"row", justifyContent:"center", padding:"4px 0px"}}>
               <label htmlfor="email">
-                <h6>Email</h6>
+                <h4 style={{padding:"0px 25px "}}>Email</h4>
               </label>
               <input
                 type="email"
@@ -101,11 +103,11 @@ function MyVerticallyCenteredModal(props) {
                 required="true"
                 name="email" 
                 placeholder="Enter email" 
+                style={{border:"1px solid black", borderRadius:"4px", padding:"2px 2px"}}
               />
-            </form>
-          </div>
-          <div classname="form_input">
-            <label htmlfor="Subject 1">Subject 1</label>
+              </div>
+          <div style={{padding:"4px 0px", display:"flex", flexDirection:"row", justifyContent:"center"}}>
+            <label htmlfor="Subject 1" style={{padding:"0px 10px"}}>  Subject 1</label>
             <select
               id="subject1"
               name="choice1"
@@ -126,8 +128,8 @@ function MyVerticallyCenteredModal(props) {
               <option value="world_war1">World War 1</option>
             </select>
           </div>
-          <div classname="form_input">
-            <label htmlfor="Subject 2"> Subject 2 </label>
+          <div style={{padding:"4px 0px", display:"flex", flexDirection:"row", justifyContent:"center"}}>
+            <label htmlfor="Subject 2" style={{padding:"0px 10px"}}> Subject 2 </label>
             <select
               id="subject2"
               name="choice2"
@@ -148,8 +150,8 @@ function MyVerticallyCenteredModal(props) {
               <option value="world_war1">World War 1</option>
             </select>
           </div>
-          <div classname="form_input">
-            <label htmlfor="Subject 3"> Subject 3 </label>
+          <div style={{padding:"4px 0px", display:"flex", flexDirection:"row", justifyContent:"center"}}>
+            <label htmlfor="Subject 3" style={{padding:"0px 10px"}}> Subject 3 </label>
             <select
               id="subject3"
               name="choice3"
@@ -170,8 +172,8 @@ function MyVerticallyCenteredModal(props) {
               <option value="world_war1">World War 1</option>
             </select>
           </div>
-          <div classname="form_input">
-            <label htmlfor="Subject 3"> Subject 4 </label>
+          <div style={{padding:"4px 0px", display:"flex", flexDirection:"row", justifyContent:"center"}}>
+            <label htmlfor="Subject 4" style={{padding:"0px 10px"}}> Subject 4 </label>
             <select
               id="subject3"
               name="choice4"
@@ -192,8 +194,8 @@ function MyVerticallyCenteredModal(props) {
               <option value="world_war1">World War 1</option>
             </select>
           </div>
-          <div classname="form_input">
-            <label htmlfor="Subject 5"> Subject 5 </label>
+          <div style={{padding:"4px 0px", display:"flex", flexDirection:"row", justifyContent:"center"}}>
+            <label htmlfor="Subject 5" style={{padding:"0px 10px"}}> Subject 5 </label>
             <select
               id="subject3"
               name="choice5"
@@ -213,16 +215,13 @@ function MyVerticallyCenteredModal(props) {
               <option value="space">Space</option>
               <option value="world_war1">World War 1</option>
             </select>
+          
           </div>
-          <button classname="btn" onClick={handleSaveUserDetails}>
+          <Button classname="btn" style={{padding:"8px 8px", margin:"10px 0px"}} onClick={handleSaveUserDetails}>
             Create
-          </button>
-          <ToastContainer/>
-        </section>
+          </Button>
+        </div>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}> Submit </Button>
-      </Modal.Footer>
     </Modal>
   );
 }

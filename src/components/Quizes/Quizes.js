@@ -2,10 +2,11 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Quizes({ quiz }) {
   const quizname = quiz.quizname;
-
+  const navigate = useNavigate();
   const token = localStorage.getItem("usersdatatoken");
 
   const dateString = "2023-05-31T18:30:00.000Z";
@@ -51,12 +52,22 @@ function Quizes({ quiz }) {
         });
 
         const res2 = await data2.json();
+        if(res2.message === "Register for quiz"){
+          toast.success("Registered", {
+            position: "top-right",
+          })
+        }
         console.log(res2);
       }
     } catch (err) {
       console.log("Error: ", err);
     }
   };
+
+  const handleLoginQuiz = (e) =>{
+    e.preventDefault();
+    navigate("/login"); 
+  }
 
   return (
       <Card style={{margin:"4px 0px"}}>
@@ -85,7 +96,13 @@ function Quizes({ quiz }) {
             Time:{quiz.time}
             </Card.Text>
             </div>
-          <Button onClick={handleRegisterQuiz} variant="primary" style={{height:"50px"}}> Register </Button>
+          {
+            token !== null
+            ?
+            <Button onClick={handleRegisterQuiz} variant="primary" style={{height:"50px"}}> Register </Button>
+            :
+            <Button onClick={handleLoginQuiz} variant="primary" style={{height:"50px"}}> Login First! </Button>
+          }
           </div>
         </Card.Body>
       </Card>
