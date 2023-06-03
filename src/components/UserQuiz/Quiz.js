@@ -73,9 +73,9 @@ function Quiz({ quiz }) {
             {
                timeToQuiz === true 
               ? 
-              <Button onClick={handleStartQuiz} variant="primary" style={{height:"50px"}}> Start Quiz </Button>
+              <Button onClick={handleStartQuiz} variant="success" style={{height:"50px"}}> Start Quiz </Button>
               :
-              <Button variant="primary" style={{height:"50px"}}> Quiz Yet not started </Button>
+              <h4 style={{color:"#1562c1"}}> Yet not started </h4>
             } 
             {/* <Button onClick={handleStartQuiz} variant="primary" style={{height:"50px"}}> Start Quiz </Button> */}
           </div>
