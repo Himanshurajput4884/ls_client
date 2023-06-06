@@ -27,7 +27,7 @@ function Quizes({ quiz }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          authorization: token,
+          "authorization": token,
           Accept: "application/json",
         },
         body: JSON.stringify({ quizname }),
@@ -52,7 +52,7 @@ function Quizes({ quiz }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          authorization: token,
+          "authorization": token,
           Accept: "application/json",
         },
         body: JSON.stringify({ quizname }),
@@ -69,7 +69,7 @@ function Quizes({ quiz }) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            authorization: token,
+            "authorization": token,
             Accept: "application/json",
           },
           body: JSON.stringify({ quizname }),

@@ -50,8 +50,7 @@ const RunQuiz = () => {
 
     // Receive the score from the server
     socket.on('score', (data) => {
-      const receivedScore = data.score;
-      setScore((prevScore) => prevScore + receivedScore);
+      setScore(data.score);
     });
 
     // Handle disconnection from the server
