@@ -22,6 +22,7 @@ function MyQuizes({ quiz }) {
       if (res.message === "success") {
         console.log(res.quiz);
         setCurrQuiz(res.quiz);
+        localStorage.setItem('username', res.username);
       } else {
         console.log("Quiz not fetched");
       }

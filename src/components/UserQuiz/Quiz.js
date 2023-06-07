@@ -8,7 +8,7 @@ function Quiz({ quiz }) {
   const quizname = quiz.quizname;
   const [ timeToQuiz, setTimeToQuiz ] = useState(false);
   const token = localStorage.getItem("usersdatatoken");
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const dateString = "2023-05-31T18:30:00.000Z";
 
   const date = new Date(quiz.date);
